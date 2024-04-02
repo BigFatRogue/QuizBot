@@ -122,11 +122,12 @@ def set_lst_string(lst: list) -> list:
 if __name__ == '__main__':
     lst_quiz = get_wow() + get_squiz()
 
-    f = {'fMain': ['WOW', 'SQUIZ'], 'fDate': (10, 'марта', 7, 'апреля'), 'fTime': (14, 20), 'fAddress': {'BarBQ Night::Ломоносова, 16', 'ул. Белинского, 13::Чешская Пивница'}, 'fWeekDay': {'Пт', 'Вс', 'Сб'}}
-
+    # f = {'fMain': ['WOW', 'SQUIZ'], 'fDate': (1, 'апреля', 16, 'апреля'), 'fTime': None, 'fAddress': None, 'fWeekDay': {'Сб', 'Пт', 'Вс'}}
+    f = {'fMain': None, 'fDate': None, 'fTime': None, 'fAddress': None,
+         'fWeekDay': None}
     # print(get_main_character(lst_quiz))
     new_lst_quiz = filters_quiz(lst_quiz=lst_quiz, **f)
 
-    print( set_lst_string(new_lst_quiz))
+    print(set_lst_string(new_lst_quiz))
     # for dct in new_lst_quiz:
     #     print(dct['date'])

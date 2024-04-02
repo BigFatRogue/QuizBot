@@ -25,11 +25,20 @@ def try_error(func):
     return wrapper
 
 
+@bot.message_handler(commands=['help'])
+def get_help(message):
+    string = """
+    /start - начало\n/filters - настройка фильтров\n/poll - меню по созданию\n/poll_add - добавить отфильтрованные опросы\n/__del - удалить последнее сообщение бота\n/__reboot - очистить фильтр
+    """
+    bot.reply_to(message, string)
+
+
 @bot.message_handler(commands=['start'])
 @try_error
 def send_welcome(message):
     bot.reply_to(message, "Привет! Я бот для создания опросов. "
-                          "Введите /poll, чтобы создать опрос или /filters чтобы сформировать фильтры.")
+                          "Введите /poll, чтобы создать опрос или /filters чтобы сформировать фильтры.\n"
+                          "/help - описание всех команд")
 
 
 # Обработчик команды /poll

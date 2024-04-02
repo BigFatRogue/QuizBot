@@ -13,10 +13,8 @@ def get_squiz() -> list:
 
     lst = []
     for i, product in enumerate(response['products']):
-        # print(product, '\n')
         char = product['characteristics']
-
-        if len(char) == 2:  # не резерв
+        if len(char) >= 2:  # не резерв
             form = char[0]['value']
             if form != 'Онлайн':
                 dates = product['title']
@@ -32,7 +30,7 @@ def get_squiz() -> list:
                 address = re.findall(r';">(.*?)</a>', desc)
                 address_0 = address[0].replace('"', '').replace('ул. ', '')
                 address_1 = address[1].replace('"', '').replace('ул. ', '')
-                name = re.findall(r"Описание: (.*?)<", desc)[0]
+                name = re.findall(r'Описание: "(.*?)"', desc)[0]
 
                 value = {'main': 'SQUIZ',
                          'name': name.strip(),
