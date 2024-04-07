@@ -3,7 +3,7 @@ from WOW_parser import get_wow
 from datetime import datetime
 
 
-def get_main_character(lst_quiz: list[dict]) -> tuple[list]:
+def get_main_character(lst_quiz: list) -> tuple:
     sMain = set()
     sAddress = set()
 
@@ -14,7 +14,7 @@ def get_main_character(lst_quiz: list[dict]) -> tuple[list]:
     return list(sMain), list(sAddress)
 
 
-def filters_quiz(lst_quiz: list[dict],
+def filters_quiz(lst_quiz: list,
             fMain=None,
             fDate=None,
             fTime=None,
