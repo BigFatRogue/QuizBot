@@ -38,7 +38,7 @@ def filters_quiz(lst_quiz: list,
         if fDate is not None:
             data_number, mouth, week_day = dct['date']
             mouth_str_to_number = lambda x: lst_mouth.index(x)
-            number = int(f'{mouth_str_to_number(mouth)}{data_number}')
+            number = int(f'{mouth_str_to_number(mouth)}{int(data_number):02}')
             if len(fDate) == 2:
                 fDay, fMouth = fDate
                 fDay = f'{fDay:02}'
@@ -122,9 +122,9 @@ def set_lst_string(lst: list) -> list:
 if __name__ == '__main__':
     lst_quiz = get_wow() + get_squiz()
 
-    # f = {'fMain': ['WOW', 'SQUIZ'], 'fDate': (1, 'апреля', 16, 'апреля'), 'fTime': None, 'fAddress': None, 'fWeekDay': {'Сб', 'Пт', 'Вс'}}
-    f = {'fMain': None, 'fDate': None, 'fTime': None, 'fAddress': None,
-         'fWeekDay': None}
+    f = {'fMain': None, 'fDate': (7, 'июня', 10, 'июня'), 'fTime': None, 'fAddress': None}
+    # f = {'fMain': None, 'fDate': None, 'fTime': None, 'fAddress': None,
+    #      'fWeekDay': None}
     # print(get_main_character(lst_quiz))
     new_lst_quiz = filters_quiz(lst_quiz=lst_quiz, **f)
 
