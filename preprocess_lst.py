@@ -21,7 +21,7 @@ def filters_quiz(lst_quiz: list,
             fWeekDay=None,
             fAddress=None) -> list:
 
-    lst_mouth = ['января', 'февраля', "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "декабря", "ноября", "декабря"]
+    lst_mouth = ['января', 'февраля', "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
     lst_day_week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     new_lst = []
 
@@ -122,8 +122,8 @@ def set_lst_string(lst: list) -> list:
 if __name__ == '__main__':
     lst_quiz = get_wow() + get_squiz()
 
-    f = {'fMain': None, 'fDate': (7, 'июня', 10, 'июня'), 'fTime': None, 'fAddress': None}
-    # f = {'fMain': None, 'fDate': None, 'fTime': None, 'fAddress': None,
+    f = {'fMain': None, 'fDate': (29, 'ноября', 1, 'декабря'), 'fTime': None, 'fAddress': None}
+    # f = {'fMain': None, 'fDate': None, 'fTime' None, 'fAddress': None,
     #      'fWeekDay': None}
     # print(get_main_character(lst_quiz))
     new_lst_quiz = filters_quiz(lst_quiz=lst_quiz, **f)
