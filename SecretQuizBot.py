@@ -252,14 +252,12 @@ def create_poll(message):
 
     len_options = len(options)
     flag = True
-    start_date = lst_all_quiz[0]['date'][0]
-    for i in range(0, len_options, 10):
-        if len_options - i >= 10:
-            start, end = i, i + 10
-        else:
-            start, end = i, len_options
-            flag = False
 
+    step = 10 if len_options % 10 > 1 else 9
+    rng = [(i, i + step) for i in range(0, len_options - step, step)]
+    rng.append((step * (len_options//step), step * (len_options//step) + len_options % step))
+
+    for (start, end) in rng:
         question = f"КВИЗЫ МОИ КВИЗЫ ({f_quiz[start]['date'][0]} - {f_quiz[end - 1]['date'][0]})"
 
         try:
