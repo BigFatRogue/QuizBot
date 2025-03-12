@@ -1,6 +1,6 @@
 from SQUIZ_parser import get_squiz
 from WOW_parser import get_wow
-from datetime import datetime
+from PLIZ_parser import get_pliz
 
 
 def get_main_character(lst_quiz: list) -> tuple:
@@ -120,14 +120,14 @@ def set_lst_string(lst: list) -> list:
 
 
 if __name__ == '__main__':
-    lst_quiz = get_wow() + get_squiz()
+    lst_quiz = get_wow() + get_squiz() + get_pliz()
 
-    f = {'fMain': None, 'fDate': (29, 'ноября', 1, 'декабря'), 'fTime': None, 'fAddress': None}
-    # f = {'fMain': None, 'fDate': None, 'fTime' None, 'fAddress': None,
-    #      'fWeekDay': None}
-    # print(get_main_character(lst_quiz))
+    # f = {'fMain': None, 'fDate': (29, 'ноября', 1, 'декабря'), 'fTime': None, 'fAddress': None}
+    f = {'fMain': None, 'fDate': None, 'fTime': None, 'fAddress': None, 'fWeekDay': None}
+    f = {'fMain': ('PLIZ', 'SQUIZ'), 'fDate': None, 'fTime': None, 'fAddress': None, 'fWeekDay': None}
     new_lst_quiz = filters_quiz(lst_quiz=lst_quiz, **f)
 
-    print(set_lst_string(new_lst_quiz))
-    # for dct in new_lst_quiz:
-    #     print(dct['date'])
+    # print(set_lst_string(new_lst_quiz))
+    print(len(new_lst_quiz))
+    for dct in new_lst_quiz:
+        print(dct)

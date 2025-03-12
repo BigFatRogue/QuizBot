@@ -4,9 +4,9 @@ https://t.me/SecretQuizBot
 
 import telebot
 from telebot import types
-from time import sleep
 from SQUIZ_parser import get_squiz
 from WOW_parser import get_wow
+from PLIZ_parser import get_pliz
 from preprocess_lst import filters_quiz, get_main_character, set_lst_string
 
 
@@ -48,7 +48,7 @@ def set_poll(message):
     global f_quiz, lst_all_quiz, my_filters, f_str_quiz
 
     if lst_all_quiz is None:
-        lst_all_quiz = sorted(get_wow() + get_squiz(), key=lambda key: key['number'])
+        lst_all_quiz = sorted(get_wow() + get_squiz() + get_pliz(), key=lambda key: key['number'])
 
     f_quiz = filters_quiz(lst_all_quiz, **my_filters)
     f_str_quiz = set_lst_string(f_quiz)
@@ -79,7 +79,7 @@ def change_filters(message):
     global all_organ, all_address, lst_all_quiz
 
     if lst_all_quiz is None:
-        lst_all_quiz = sorted(get_wow() + get_squiz(), key=lambda key: key['number'])
+        lst_all_quiz = sorted(get_wow() + get_squiz() + get_pliz(), key=lambda key: key['number'])
         all_organ, all_address = get_main_character(lst_all_quiz)
 
     markup = types.InlineKeyboardMarkup()
@@ -243,7 +243,7 @@ def create_poll(message):
     global f_quiz, lst_all_quiz, my_filters, f_str_quiz
 
     if f_str_quiz is None:
-        lst_all_quiz = sorted(get_wow() + get_squiz(), key=lambda key: key['number'])
+        lst_all_quiz = sorted(get_wow() + get_squiz() + get_pliz(), key=lambda key: key['number'])
 
         f_quiz = filters_quiz(lst_all_quiz, **my_filters)
         f_str_quiz = set_lst_string(f_quiz)
@@ -388,9 +388,6 @@ def reboot(message):
 
 # Запускаем бота
 if __name__ == '__main__':
-    lst_mount = ['января', 'февраля', "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "декабря",
-                 "ноября", "декабря"]
-    lst_week_day = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
     my_filters = {'fMain': None, 'fDate': None, 'fTime': None, 'fAddress': None, 'fWeekDay': None}
 
     all_organ, all_address, all_weekday = None, None, None

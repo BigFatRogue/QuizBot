@@ -2,11 +2,10 @@ import requests
 import bs4
 from datetime import datetime
 
+from variant import *
+
 
 def get_wow() -> list:
-    lst_mouth = ['января', 'февраля', "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "декабря", "ноября", "декабря"]
-    lst_weekday = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
-
     link = r'https://spb.wowquiz.ru/schedule'
     response = requests.get(link)
     soup = bs4.BeautifulSoup(response.text, 'html.parser')
@@ -26,7 +25,7 @@ def get_wow() -> list:
     for title, date, time, place, address, status, price in zip(all_title, all_date, all_time, all_place, all_address, all_status, all_price):
         if status == 'регистрация':
             data_number, mouth = date.split(',')[0].split()
-            week_day = lst_weekday[datetime(2024, lst_mouth.index(mouth) + 1, int(data_number)).weekday()]
+            week_day = LST_WEEKDAY[datetime(NOW_YEAR, LST_MOUTH.index(mouth) + 1, int(data_number)).weekday()]
             hours, minutes = list(map(int, time.split(':')))
 
             value = {'main': 'WOW',
@@ -37,7 +36,7 @@ def get_wow() -> list:
                      'form': None,
                      'type': None,
                      'address': f'{address}::{place}',
-                     'number': int(str(lst_mouth.index(mouth)) + data_number)
+                     'number': int(str(LST_MOUTH.index(mouth)) + data_number)
                      }
             lst.append(value)
 
